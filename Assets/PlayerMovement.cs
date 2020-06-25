@@ -40,10 +40,7 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateFacing()
     {
         // Get mouse position
-        var v3 = Input.mousePosition;
-        v3.z = 10f;
-        v3 = Camera.main.ScreenToWorldPoint(v3);
-        print($"Mouse position: {v3}");
+        var v3 = UtilityClass.mouseWorldPos;
         if (v3.x > transform.position.x)
         {
             sr.flipX = false;
@@ -52,5 +49,24 @@ public class PlayerMovement : MonoBehaviour
         {
             sr.flipX = true;
         }
+    }
+}
+
+public static class UtilityClass
+{
+    public static Vector3 mouseWorldPos
+    {
+        get
+        {
+            var v3 = Input.mousePosition;
+            v3.z = 10f;
+            v3 = Camera.main.ScreenToWorldPoint(v3);
+            return v3;
+        }
+    }
+
+    public static Vector3 GetAimDirection(Vector3 original)
+    {
+        return (new Vector2(mouseWorldPos.x, mouseWorldPos.y) - new Vector2(original.x, original.y)).normalized;
     }
 }
