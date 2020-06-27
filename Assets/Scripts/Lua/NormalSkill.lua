@@ -4,12 +4,8 @@ local GameObject = UnityEngine.GameObject
 
 local mainCharacter
 
-function this.Start()
-    -- Find the main character
-    mainCharacter = GameObject.Find('Samurai')
-    
-end 
 
-function this.Update()
-    
-end 
+function this.Use()
+    mainCharacter = GameObject.Find('Samurai')
+    local go = GameObject('go')
+end

@@ -23,15 +23,11 @@ public class AccessingLuaVariables : MonoBehaviour
 
 	void Start () 
     {
-#if UNITY_5 || UNITY_2017 || UNITY_2018
         Application.logMessageReceived += ShowTips;
-#else
-        Application.RegisterLogCallback(ShowTips);
-#endif
         new LuaResLoader();
         LuaState lua = new LuaState();
         lua.Start();
-        lua["Objs2Spawn"] = 5;
+        lua["Objs2Spawn"] = 5;    // set variable in lua
         lua.DoString(script);
 
         //通过LuaState访问
@@ -75,11 +71,7 @@ public class AccessingLuaVariables : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-#if UNITY_5 || UNITY_2017 || UNITY_2018
         Application.logMessageReceived -= ShowTips;
-#else
-        Application.RegisterLogCallback(null);
-#endif
     }
 
     string tips = null;

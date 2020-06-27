@@ -10,7 +10,7 @@ public class HelloWorld : MonoBehaviour
         lua.Start();
         string hello =
             @"                
-                print('hello tolua#')                                  
+                print('hello world')                                  
             ";
         
         lua.DoString(hello, "HelloWorld.cs");
